@@ -16,10 +16,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-change-this')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+# Railway domain settings
+RAILWAY_URL = "job-portal-production-746e.up.railway.app"   # <-- replace with your real Railway domain
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    RAILWAY_URL,
+    ".up.railway.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{RAILWAY_URL}",
+    "https://*.up.railway.app",
+]
+
 
 # Application definition
 INSTALLED_APPS = [
